@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var signupOrLogin: UIButton!
     
+    //pop-up alert
     func createAlert(title: String,message: String ){
         
         let alert = UIAlertController(title: title, message: message,
@@ -35,8 +36,10 @@ class ViewController: UIViewController {
         
     }
     
+    //click SignUp or LogIn Button event
     @IBAction func SignupOrLogin(_ sender: Any) {
         
+        //parseServer會幫我們辨識是否輸入格式合法,所以只要檢查是否傳入空字串即可
         if emailTextField.text == "" || passwordTextField.text == "" {
             
             createAlert(title: "錯誤的格式", message: "請輸入 Email 與 password")
@@ -76,7 +79,9 @@ class ViewController: UIViewController {
                     }else{
                         
                         print("user signed up.")
-                        
+                        self.createAlert(title: "註冊成功", message: "請登入")
+                        //切換至登入模式
+                        self.changeSignupMode(self)
                     }
                 })
             }else{
