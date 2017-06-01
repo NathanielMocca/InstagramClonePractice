@@ -79,9 +79,11 @@ class ViewController: UIViewController {
                     }else{
                         
                         print("user signed up.")
-                        self.createAlert(title: "註冊成功", message: "請登入")
+                        //self.createAlert(title: "註冊成功", message: "請登入")
                         //切換至登入模式
-                        self.changeSignupMode(self)
+                        //self.changeSignupMode(self)
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
+
                     }
                 })
             }else{
@@ -103,6 +105,7 @@ class ViewController: UIViewController {
                     }else{
                         
                         print("Logged in.")
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                         
                     }
                     
@@ -140,6 +143,18 @@ class ViewController: UIViewController {
 
         }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //當使用者已登入,直接跳到user table
+        if PFUser.current() != nil {
+            
+            performSegue(withIdentifier: "showUserTable", sender: self)
+            
+        }
+        
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
