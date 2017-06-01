@@ -14,6 +14,8 @@ class UserTableViewController: UITableViewController {
     var userNames = [""]
     var userIDs = [""]
     var isFollowing = ["" : true]
+    
+    var refresher:UIRefreshControl!
 
     @IBAction func logout(_ sender: Any) {
     
@@ -28,20 +30,7 @@ class UserTableViewController: UITableViewController {
    
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        //all users
-        
-        print("PFUSER.current:")
-        print(PFUser.current()!)
+    func refresh(){
         
         let query = PFUser.query()
         
@@ -50,7 +39,7 @@ class UserTableViewController: UITableViewController {
             if error != nil {
                 
                 print(error!)
-            
+                
             }else if let users = objects {
                 
                 self.userNames.removeAll()
@@ -95,7 +84,7 @@ class UserTableViewController: UITableViewController {
                                         
                                         print(self.isFollowing)
                                         self.tableView.reloadData()
-                                        
+                                        self.refresher.endRefreshing()
                                     }
                                     
                                 }
@@ -108,7 +97,33 @@ class UserTableViewController: UITableViewController {
             }
             
         })
+
+    }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //all users
+        
+        print("PFUSER.current:")
+        print(PFUser.current()!)
+        
+        refresh()
+        
+        refresher = UIRefreshControl()
+        
+        refresher.attributedTitle = NSAttributedString(string: "下拉以更新")
+        
+        refresher.addTarget(self, action: #selector(UserTableViewController.refresh), for: UIControlEvents.valueChanged)
+        
+        tableView.addSubview(refresher)
     }
 
     override func didReceiveMemoryWarning() {
