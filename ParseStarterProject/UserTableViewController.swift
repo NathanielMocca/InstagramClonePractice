@@ -13,7 +13,7 @@ class UserTableViewController: UITableViewController {
     
     var userNames = [""]
     var userIDs = [""]
-    var isFollowing = ["" : true]
+    var isFollowing = ["" : false]
     
     var refresher:UIRefreshControl!
 
