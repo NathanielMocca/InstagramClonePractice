@@ -61,6 +61,10 @@ class FeedTableViewController: UITableViewController {
                                 
                                 if let posts = objects {
                                     
+                                    self.usernames.removeAll()
+                                    self.imageFiles.removeAll()
+                                    self.messages.removeAll()
+                                    
                                     for object in posts {
                                         
                                         if let post = object as? PFObject{
