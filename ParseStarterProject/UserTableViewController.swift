@@ -27,6 +27,15 @@ class UserTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.navigationBar.isHidden = false
+        
+        let titleView = UIImageView(image: UIImage(named: "Instagram Text Logo_s"))
+        titleView.contentMode = UIViewContentMode.scaleAspectFit
+        self.navigationItem.titleView = titleView
+        
+        //let postButtonImage = UIImage(named: "Instagram Camera Icon")
+        
+        //var barButtonItem = self.navigationItem.leftBarButtonItem!
+        //barButtonItem.setBackgroundImage(postButtonImage, for: UIControlState.normal, barMetrics: .default)
    
     }
     

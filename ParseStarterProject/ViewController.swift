@@ -121,11 +121,11 @@ class ViewController: UIViewController {
         if signupMode {
             
             //change to login mode
-            signupOrLogin.setTitle("Log in", for: [])
+            signupOrLogin.setTitle("登入", for: [])
 
-            changeSignupModeButton.setTitle("Sign up", for: [])
+            changeSignupModeButton.setTitle("註冊", for: [])
             
-            messageLabel.text = "Don't have an account?"
+            messageLabel.text = "還沒有帳號嗎？"
             
             signupMode = false
             
@@ -133,11 +133,11 @@ class ViewController: UIViewController {
             
             //change to Signup mode
             
-            signupOrLogin.setTitle("Sign up", for: [])
+            signupOrLogin.setTitle("註冊", for: [])
             
-            changeSignupModeButton.setTitle("Log in", for: [])
+            changeSignupModeButton.setTitle("登入", for: [])
             
-            messageLabel.text = "Already have an account?"
+            messageLabel.text = "已經有帳號了？"
             
             signupMode = true
 

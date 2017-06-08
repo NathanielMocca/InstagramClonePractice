@@ -102,7 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
         //            application.registerForRemoteNotificationTypes(types)
         //        }
-
+        
+        let image = UIImage(named: "Header")
+        UINavigationBar.appearance().setBackgroundImage(image, for: .default)
+        
         return true
     }
 
