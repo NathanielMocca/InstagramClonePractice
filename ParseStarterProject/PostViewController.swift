@@ -102,7 +102,10 @@ class PostViewController: UIViewController,UINavigationControllerDelegate,UIImag
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let titleView = UIImageView(image: UIImage(named: "Instagram Text Logo_s"))
+        titleView.contentMode = UIViewContentMode.scaleAspectFit
+        self.navigationItem.titleView = titleView
+        
     }
 
     override func didReceiveMemoryWarning() {

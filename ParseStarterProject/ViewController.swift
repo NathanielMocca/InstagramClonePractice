@@ -79,9 +79,6 @@ class ViewController: UIViewController {
                     }else{
                         
                         print("user signed up.")
-                        //self.createAlert(title: "註冊成功", message: "請登入")
-                        //切換至登入模式
-                        //self.changeSignupMode(self)
                         self.performSegue(withIdentifier: "showUserTable", sender: self)
 
                     }

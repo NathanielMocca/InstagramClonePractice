@@ -19,7 +19,11 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var query = PFUser.query()
+        let titleView = UIImageView(image: UIImage(named: "Instagram Text Logo_s"))
+        titleView.contentMode = UIViewContentMode.scaleAspectFit
+        self.navigationItem.titleView = titleView
+        
+        let query = PFUser.query()
         
         query?.findObjectsInBackground(block: { (objects, error) in
             
@@ -60,10 +64,6 @@ class FeedTableViewController: UITableViewController {
                             query.findObjectsInBackground(block: { (objects, error) in
                                 
                                 if let posts = objects {
-                                    
-                                    self.usernames.removeAll()
-                                    self.imageFiles.removeAll()
-                                    self.messages.removeAll()
                                     
                                     for object in posts {
                                         
