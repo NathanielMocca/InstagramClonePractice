@@ -32,10 +32,7 @@ class UserTableViewController: UITableViewController {
         titleView.contentMode = UIViewContentMode.scaleAspectFit
         self.navigationItem.titleView = titleView
         
-        //let postButtonImage = UIImage(named: "Instagram Camera Icon")
-        
-        //var barButtonItem = self.navigationItem.leftBarButtonItem!
-        //barButtonItem.setBackgroundImage(postButtonImage, for: UIControlState.normal, barMetrics: .default)
+        self.refresh()
    
     }
     
@@ -129,7 +126,6 @@ class UserTableViewController: UITableViewController {
         refresher = UIRefreshControl()
         
         refresher.attributedTitle = NSAttributedString(string: "下拉以更新")
-        
         refresher.addTarget(self, action: #selector(UserTableViewController.refresh), for: UIControlEvents.valueChanged)
         
         tableView.addSubview(refresher)

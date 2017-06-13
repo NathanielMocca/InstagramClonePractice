@@ -10,7 +10,7 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             activityIndicator.center = self.view.center
             activityIndicator.hidesWhenStopped = true
-            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
             view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
             //ignore interaction by user
@@ -77,6 +77,12 @@ class ViewController: UIViewController {
                         self.createAlert(title: "註冊錯誤了", message: parseErrorMessage)
                         
                     }else{
+                        
+                        //每個使用者都預設已追蹤自己的上傳
+                        let following = PFObject(className: "Followers")
+                        following["follower"] = PFUser.current()?.objectId
+                        following["following"] = PFUser.current()?.objectId
+                        following.saveInBackground()
                         
                         print("user signed up.")
                         self.performSegue(withIdentifier: "showUserTable", sender: self)
@@ -142,6 +148,25 @@ class ViewController: UIViewController {
 
     }
     
+    /*
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+ 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+        
+    }
+    */
+    
+    //摸其他地方會收鍵盤
+    func onTouchGesture(){
+        self.view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         //當使用者已登入,直接跳到user table
@@ -157,7 +182,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.onTouchGesture))
+        self.view.addGestureRecognizer(tap)
+
         UINavigationBar.appearance().tintColor = UIColor.white
+        UITextField.appearance().tintColor = UIColor.lightGray
         
     }
     

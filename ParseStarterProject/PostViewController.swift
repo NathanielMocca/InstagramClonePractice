@@ -59,7 +59,7 @@ class PostViewController: UIViewController,UINavigationControllerDelegate,UIImag
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         //ignore interaction by user
@@ -96,6 +96,10 @@ class PostViewController: UIViewController,UINavigationControllerDelegate,UIImag
         
     }
     
+    //摸其他地方會收鍵盤
+    func onTouchGesture(){
+        self.view.endEditing(true)
+    }
     
     @IBOutlet weak var messageTextbox: UITextField!
     
@@ -105,6 +109,9 @@ class PostViewController: UIViewController,UINavigationControllerDelegate,UIImag
         let titleView = UIImageView(image: UIImage(named: "Instagram Text Logo_s"))
         titleView.contentMode = UIViewContentMode.scaleAspectFit
         self.navigationItem.titleView = titleView
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.onTouchGesture))
+        self.view.addGestureRecognizer(tap)
         
     }
 
